@@ -86,6 +86,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'What I learned In Boating School Is',
+    date: 'Feb 18, 2011',
+    firstParagraph: `We're no strangers to love. You know the rules and so do I. 
+    A full commitment's what I'm thinking of. You wouldn't get this from any other guy`,
+
+    secondParagraph:`I just wanna tell you how I'm feeling
+    Gotta make you understand`,
+
+    thirdParagraph:`Never gonna give you up
+    Never gonna let you down
+    Never gonna run around and desert you
+    Never gonna make you cry
+    Never gonna say goodbye
+    Never gonna tell a lie and hurt you
+    `
   }
 ];
 
@@ -114,3 +132,48 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+
+  //Creation
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const firstP = document.createElement('p');
+  const secondP = document.createElement('p');
+  const thirdP = document.createElement('p');
+  const bttn = document.createElement('span');
+
+  //Element Locations 
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(firstP);
+  article.appendChild(secondP);
+  article.appendChild(thirdP);
+  article.appendChild(bttn);
+  
+  //className
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  bttn.classList.add('bttn');
+
+  //content
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  firstP.textContent = firstParagraph;
+  secondP.textContent = secondParagraph;
+  thirdP.textContent = thirdParagraph;
+  bttn.textContent = '+';
+
+  //Event
+  bttn.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+  });
+
+console.log(article)
+  return article;
+};
+
+data.forEach(article => {
+  document.querySelector('.articles').appendChild(articleMaker(article));
+});
